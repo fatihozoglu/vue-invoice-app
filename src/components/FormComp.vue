@@ -164,6 +164,7 @@
                   color="hsl(232, 23%, 61%)"
                   viewBox="0 0 1024 1024"
                   style="stroke: currentcolor; fill: currentcolor"
+                  @click="deleteProject(index)"
                 >
                   <path
                     d="M837.312 227.584v682.624c0 62.848-50.88 113.792-113.728 113.792h-455.168c-62.81 0-113.728-50.918-113.728-113.728 0-0.023 0-0.045 0-0.068l-0 0.004v-682.624h682.624zM638.272 0l56.832 56.896h199.104v113.792h-796.416v-113.792h199.040l57.024-56.896h284.416z"
@@ -176,6 +177,7 @@
             <div class="input-item" id="project-name">
               <label for="item-name"> Item Name </label>
               <input
+                ref="nextInput"
                 v-model="projectItem.name"
                 type="text"
                 name="itemName"
@@ -262,6 +264,9 @@ export default {
   },
   methods: {
     ...mapMutations(["SET_MENU_IS_OPEN"]),
+    focusInput() {
+      this.$refs.nextInput.focus();
+    },
     addNewProject() {
       let newProject = { ...this.projectItem };
       this.invoiceForm.projects.push(newProject);
@@ -269,6 +274,10 @@ export default {
       this.projectItem.quantity = 1;
       this.projectItem.price = null;
       this.projectItem.total = null;
+      this.focusInput();
+    },
+    deleteProject(i) {
+      this.invoiceForm.projects.splice(i, 1);
     },
   },
   watch: {
