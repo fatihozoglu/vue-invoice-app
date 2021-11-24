@@ -215,11 +215,9 @@
         </div>
       </form>
       <div class="btn-container">
-        <button class="btn-discard">Discard</button>
+        <button class="btn-discard" @click="SET_MENU_IS_OPEN">Discard</button>
         <div>
-          <button class="btn-draft" @click="SET_MENU_IS_OPEN">
-            Save as Draft
-          </button>
+          <button class="btn-draft">Save as Draft</button>
           <button class="btn-save">Save & Send</button>
         </div>
       </div>
@@ -299,8 +297,9 @@ export default {
   padding: 56px 32px 2rem 129px;
   display: flex;
   flex-direction: column;
+  background-color: #141624;
   color: white;
-  z-index: 1;
+  z-index: 2;
 }
 h2 {
   font-size: 1.5rem;

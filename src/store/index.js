@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    menuIsOpen: true,
+    menuIsOpen: false,
   },
   mutations: {
     SET_MENU_IS_OPEN(state) {

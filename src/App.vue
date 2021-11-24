@@ -1,20 +1,28 @@
 <template>
-  <div id="app">
-    <HeaderComp />
-    <FormComp />
-    <router-view class="router-view" />
+  <div class="app" :class="{ dark: menuIsOpen }">
+    <div>
+      <HeaderComp />
+      <FormComp />
+    </div>
+    <div class="router-view">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
 import HeaderComp from "./components/HeaderComp.vue";
 import FormComp from "./components/FormComp.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "App",
   components: {
     HeaderComp,
     FormComp,
+  },
+  computed: {
+    ...mapState(["menuIsOpen"]),
   },
 };
 </script>
@@ -31,9 +39,17 @@ body {
   font-size: 0.75rem;
   line-height: 1.25;
 }
-#app {
+.app {
   background-color: #141624;
   max-width: 1280px;
+  min-width: 100vw;
   margin: 0 auto;
+  display: flex;
+}
+.router-view {
+  width: 100%;
+}
+.dark {
+  background-color: #0a0b12;
 }
 </style>

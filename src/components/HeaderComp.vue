@@ -44,7 +44,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 .logo-container {
   width: 100%;
