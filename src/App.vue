@@ -45,6 +45,7 @@ body {
   min-width: 100vw;
   margin: 0 auto;
   display: flex;
+  transition: background-color 0.5s;
 }
 .router-view {
   width: 100%;

@@ -217,7 +217,7 @@
       <div class="btn-container">
         <button class="btn-discard" @click="SET_MENU_IS_OPEN">Discard</button>
         <div>
-          <button class="btn-draft">Save as Draft</button>
+          <button class="btn-draft" @click="saveAsDraft">Save as Draft</button>
           <button class="btn-save">Save & Send</button>
         </div>
       </div>
@@ -245,6 +245,7 @@ export default {
         invoiceDate: null,
         paymentTerm: null,
         projects: [],
+        status: "pending",
       },
       projectItem: {
         name: null,
@@ -261,7 +262,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["SET_MENU_IS_OPEN"]),
+    ...mapMutations(["SET_MENU_IS_OPEN", "SET_INVOICES"]),
     focusInput() {
       this.$refs.nextInput.focus();
     },
@@ -276,6 +277,11 @@ export default {
     },
     deleteProject(i) {
       this.invoiceForm.projects.splice(i, 1);
+    },
+    saveAsDraft() {
+      let newInvoice = { ...this.invoiceForm, status: "draft" };
+      this.SET_INVOICES(newInvoice);
+      this.SET_MENU_IS_OPEN();
     },
   },
   watch: {
@@ -460,10 +466,10 @@ button {
 
 /* Transition Effects for the component starts here */
 .slide-fade-enter-active {
-  transition: all 0.5s ease;
+  transition: all 0.5s ease-in-out;
 }
 .slide-fade-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.5s ease-in-out;
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
