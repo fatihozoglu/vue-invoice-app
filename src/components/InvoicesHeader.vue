@@ -4,7 +4,7 @@
       <h1 class="title-name">Invoices</h1>
       <p class="title-total">There are 7 total invoices</p>
     </div>
-    <div class="filter">
+    <div class="filter" ref="filter">
       <div @click="filterIsOpen = !filterIsOpen" class="filter-btn">
         Filter By Status
       </div>
@@ -57,6 +57,19 @@ export default {
   props: {},
   methods: {
     ...mapMutations(["SET_MENU_IS_OPEN"]),
+    closeFilterMenu(e) {
+      if (this.filterIsOpen === true) {
+        if (!this.$refs.filter.contains(e.target)) {
+          this.filterIsOpen = false;
+        }
+      }
+    },
+  },
+  created() {
+    window.addEventListener("click", this.closeFilterMenu);
+  },
+  beforeDestroy() {
+    window.removeEventListener("click", this.closeFilterMenu);
   },
 };
 </script>
