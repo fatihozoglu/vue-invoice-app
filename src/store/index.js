@@ -6,10 +6,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     menuIsOpen: false,
+    invoices: [],
   },
   mutations: {
     SET_MENU_IS_OPEN(state) {
       state.menuIsOpen = !state.menuIsOpen;
+    },
+    SET_INVOICES(state, payload) {
+      state.invoices.push(payload);
     },
   },
   actions: {
