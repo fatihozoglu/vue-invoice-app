@@ -217,8 +217,10 @@
       <div class="btn-container">
         <button class="btn-discard" @click="SET_MENU_IS_OPEN">Discard</button>
         <div>
-          <button class="btn-draft" @click="saveAsDraft">Save as Draft</button>
-          <button class="btn-save">Save & Send</button>
+          <button class="btn-draft" @click="save('Draft')">
+            Save as Draft
+          </button>
+          <button class="btn-save" @click="save('Pending')">Save & Send</button>
         </div>
       </div>
     </div>
@@ -276,9 +278,12 @@ export default {
     deleteProject(i) {
       this.invoiceForm.projects.splice(i, 1);
     },
-    saveAsDraft() {
+    save(status) {
       this.calculateInvoiceDue();
-      let newInvoice = { ...this.invoiceForm, status: "Draft" };
+      let newInvoice = {
+        ...this.invoiceForm,
+        status: status === "Draft" ? "Draft" : "Pending",
+      };
       this.SET_INVOICES(newInvoice);
       this.SET_MENU_IS_OPEN();
     },

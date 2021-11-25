@@ -4,9 +4,38 @@
     <p class="invoice-due">{{ invoiceItem.invoiceDue }}</p>
     <p class="client-name">{{ invoiceItem.clientName }}</p>
     <p class="total-price">{{ invoiceItem.total }}</p>
-    <div class="invoice-status draft">
-      <div class="invoice-status-circle"></div>
-      <div class="invoice-status-text">{{ invoiceItem.status }}</div>
+    <div
+      class="invoice-status"
+      :class="[
+        invoiceItem.status === 'Draft'
+          ? 'draft-background'
+          : invoiceItem.status === 'Pending'
+          ? 'pending-background'
+          : 'paid-background',
+      ]"
+    >
+      <div
+        class="invoice-status-circle"
+        :class="[
+          invoiceItem.status === 'Draft'
+            ? 'circle-draft'
+            : invoiceItem.status === 'Pending'
+            ? 'circle-pending'
+            : 'circle-paid',
+        ]"
+      ></div>
+      <div
+        class="invoice-status-text"
+        :class="[
+          invoiceItem.status === 'Draft'
+            ? 'draft-color'
+            : invoiceItem.status === 'Pending'
+            ? 'pending-color'
+            : 'paid-color',
+        ]"
+      >
+        {{ invoiceItem.status }}
+      </div>
     </div>
     <svg
       color="hsl(252, 94%, 67%)"
@@ -76,7 +105,31 @@ export default {
 .invoice-status-text {
   font-size: 12px;
 }
-.draft {
+.draft-background {
   background-color: #292c45;
+}
+.draft-color {
+  color: rgb(224, 228, 251);
+}
+.pending-background {
+  background-color: rgba(255, 145, 0, 0.06);
+}
+.pending-color {
+  color: rgb(255, 145, 0);
+}
+.paid-background {
+  background-color: rgba(51, 215, 160, 0.06);
+}
+.paid-color {
+  color: rgb(51, 215, 160);
+}
+.circle-draft {
+  background-color: rgb(224, 228, 251);
+}
+.circle-pending {
+  background-color: rgb(255, 145, 0);
+}
+.circle-paid {
+  background-color: rgb(51, 215, 160);
 }
 </style>
