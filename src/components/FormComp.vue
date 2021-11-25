@@ -242,8 +242,9 @@ export default {
         clientCity: null,
         clientPostCode: null,
         clientCountry: null,
-        invoiceDate: null,
-        paymentTerm: null,
+        invoiceDate: new Date(Date.now()).toDateString(),
+        invoiceDue: null,
+        paymentTerm: "seven",
         projects: [],
         status: "pending",
       },
@@ -269,19 +270,31 @@ export default {
     addNewProject() {
       let newProject = { ...this.projectItem };
       this.invoiceForm.projects.push(newProject);
-      this.projectItem.name = "";
-      this.projectItem.quantity = 1;
-      this.projectItem.price = null;
-      this.projectItem.total = null;
+      this.projectItem = { name: "", quantity: 1, price: null, total: null };
       this.focusInput();
     },
     deleteProject(i) {
       this.invoiceForm.projects.splice(i, 1);
     },
     saveAsDraft() {
-      let newInvoice = { ...this.invoiceForm, status: "draft" };
+      this.calculateInvoiceDue();
+      let newInvoice = { ...this.invoiceForm, status: "Draft" };
       this.SET_INVOICES(newInvoice);
       this.SET_MENU_IS_OPEN();
+    },
+    calculateInvoiceDue() {
+      let invoiceDate = Date.parse(this.invoiceForm.invoiceDate);
+      let paymentTerm =
+        this.invoiceForm.paymentTerm === "one"
+          ? 86400000
+          : this.invoiceForm.paymentTerm === "seven"
+          ? 604800000
+          : this.invoiceForm.paymentTerm === "fourteen"
+          ? 1209600000
+          : 2592000000;
+      this.invoiceForm.invoiceDue = new Date(
+        invoiceDate + paymentTerm
+      ).toDateString();
     },
   },
   watch: {
@@ -304,6 +317,8 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: #141624;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
   color: white;
   z-index: 2;
 }

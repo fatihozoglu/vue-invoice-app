@@ -41,9 +41,7 @@ body {
 }
 .app {
   background-color: #141624;
-  max-width: 1280px;
-  min-width: 100vw;
-  margin: 0 auto;
+  width: 100vw;
   display: flex;
   transition: background-color 0.5s;
 }

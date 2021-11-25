@@ -1,17 +1,30 @@
 <template>
   <main class="home">
-    <InvoicesHeader />
+    <InvoicesHeader class="header" />
+    <div class="invoices-container">
+      <InvoiceShort
+        v-for="(item, index) in invoices"
+        :key="index"
+        :invoiceItem="item"
+      />
+    </div>
   </main>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import InvoicesHeader from "../components/InvoicesHeader.vue";
+import InvoiceShort from "../components/InvoiceShort.vue";
 
 export default {
   name: "Home",
   props: {},
   components: {
     InvoicesHeader,
+    InvoiceShort,
+  },
+  computed: {
+    ...mapState(["invoices"]),
   },
 };
 </script>
@@ -20,7 +33,10 @@ export default {
 <style scoped>
 .home {
   padding: 70px 215px;
-  width: 100%;
   min-height: 100vh;
+  width: 100vw;
+}
+.header {
+  margin-bottom: 50px;
 }
 </style>

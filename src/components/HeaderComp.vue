@@ -43,7 +43,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
+  position: fixed;
   z-index: 3;
 }
 .logo-container {

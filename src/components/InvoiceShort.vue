@@ -1,10 +1,13 @@
 <template>
   <div class="invoice-short">
-    <p>#RT3080</p>
-    <p>Due 19 Aug 2021</p>
-    <p>Jensen Huang</p>
-    <p>1,800.90</p>
-    <p>Paid</p>
+    <p class="invoice-id">#RT3080</p>
+    <p class="invoice-due">{{ invoiceItem.invoiceDue }}</p>
+    <p class="client-name">{{ invoiceItem.clientName }}</p>
+    <p class="total-price">{{ invoiceItem.total }}</p>
+    <div class="invoice-status draft">
+      <div class="invoice-status-circle"></div>
+      <div class="invoice-status-text">{{ invoiceItem.status }}</div>
+    </div>
     <svg
       color="hsl(252, 94%, 67%)"
       viewBox="0 0 1024 1024"
@@ -20,6 +23,9 @@
 <script>
 export default {
   name: "InvoiceShort",
+  props: {
+    invoiceItem: Object,
+  },
 };
 </script>
 
@@ -36,8 +42,41 @@ export default {
   color: white;
   transition: border 350ms ease-in-out;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 .invoice-short:hover {
   border: 1px solid #7b5cfa;
+}
+.invoice-id {
+  font-weight: 700;
+}
+.invoice-due,
+.client-name {
+  font-size: 12px;
+}
+.total-price {
+  font-size: 16px;
+  font-weight: 700;
+}
+.invoice-status {
+  width: 105px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 6px;
+  font-weight: 700;
+}
+.invoice-status-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+}
+.invoice-status-text {
+  font-size: 12px;
+}
+.draft {
+  background-color: #292c45;
 }
 </style>
