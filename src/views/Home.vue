@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 import InvoicesHeader from "../components/InvoicesHeader.vue";
 import InvoiceShort from "../components/InvoiceShort.vue";
 
@@ -24,16 +24,7 @@ export default {
     InvoiceShort,
   },
   computed: {
-    ...mapState(["invoices", "filter"]),
-    filteredInvoices() {
-      if (this.filter.length === 0) return this.invoices;
-      else {
-        let filtered = this.invoices.filter((item) =>
-          this.filter.includes(item.status)
-        );
-        return filtered;
-      }
-    },
+    ...mapGetters(["filteredInvoices"]),
   },
 };
 </script>

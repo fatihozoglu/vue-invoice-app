@@ -61,5 +61,15 @@ export default new Vuex.Store({
     //     });
     // },
   },
-  getters: {},
+  getters: {
+    filteredInvoices(state) {
+      if (state.filter.length === 0) return state.invoices;
+      else {
+        let filtered = state.invoices.filter((item) =>
+          state.filter.includes(item.status)
+        );
+        return filtered;
+      }
+    },
+  },
 });
