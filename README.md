@@ -1,6 +1,6 @@
 # Vue Invoice App
 
-This is the solution for [Frontend Mentor Invoice App](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl).
+This is the solution for [Frontend Mentor Invoice App](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl). It is not finished yet, I will add individual pages for each invoice and editing/deleting functionality for each invoice. I am planning to make this app a Full Stack Web Application by adding a NodeJS/Expressjs server and Mongodb or Postgresql Database.
 It is built with:
 
 - [Vuejs](https://vuejs.org/) by using [Vue CLI](https://cli.vuejs.org/),
