@@ -537,4 +537,84 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
+
+@media screen and (max-width: 1024px) {
+  .form-container {
+    top: 80px;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px 20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  h3 {
+    font-size: 0.75rem;
+  }
+  form {
+    padding: 0 10px 10px 10px;
+    gap: 16px;
+  }
+  label {
+    font-size: 0.75rem;
+    margin-bottom: 6px;
+  }
+  input,
+  select {
+    padding: 10px 8px 10px 8px;
+  }
+  .added-projects {
+    margin-bottom: 10px;
+  }
+  .project-labels,
+  .added-projects-info {
+    gap: 10px;
+  }
+  .added-projects-info {
+    margin-bottom: 10px;
+  }
+  #label-name,
+  .added-project-name {
+    flex-basis: 40%;
+  }
+  #label-qty,
+  .added-project-qty {
+    flex-basis: 10%;
+  }
+  #label-price,
+  .added-project-price {
+    flex-basis: 20%;
+  }
+  #label-total,
+  .added-project-total {
+    flex-basis: 20%;
+  }
+  .added-project-name,
+  .added-project-qty,
+  .added-project-price,
+  .added-project-total {
+    padding: 8px 6px 8px 6px;
+  }
+  #project {
+    gap: 8px;
+  }
+  .price-symbol {
+    font-size: 0.75rem;
+  }
+  .btn-container {
+    padding-top: 2rem;
+    padding-right: 20px;
+    padding-left: 5px;
+  }
+  button {
+    padding: 8px 12px;
+  }
+  .btn-add-item {
+    margin-top: 10px;
+  }
+}
 </style>

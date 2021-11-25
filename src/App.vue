@@ -42,6 +42,7 @@ body {
 .app {
   background-color: #141624;
   width: 100vw;
+  min-height: 100vh;
   display: flex;
   transition: background-color 0.5s;
 }

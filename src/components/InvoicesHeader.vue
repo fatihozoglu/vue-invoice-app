@@ -41,7 +41,7 @@
       </div>
     </div>
     <button class="add-invoice" @click="SET_MENU_IS_OPEN">
-      New Invoice<span class="symbol">+</span>
+      New <span class="remove">Invoice</span><span class="symbol">+</span>
     </button>
   </div>
 </template>
@@ -166,5 +166,37 @@ label {
   font-weight: 800;
   left: 16px;
   top: 13px;
+}
+
+@media screen and (max-width: 1024px) {
+  .filter {
+    position: relative;
+  }
+  .filter-body {
+    padding: 16px;
+    top: 40px;
+    left: -70px;
+    gap: 8px;
+  }
+  label {
+    margin-left: 8px;
+  }
+  .add-invoice {
+    padding: 8px 14px;
+    width: 80px;
+  }
+  .add-invoice::before {
+    left: 6px;
+    width: 20px;
+    height: 20px;
+  }
+  .symbol {
+    font-size: 16px;
+    left: 11px;
+    top: 8px;
+  }
+  .remove {
+    display: none;
+  }
 }
 </style>

@@ -39,4 +39,19 @@ export default {
 .header {
   margin-bottom: 50px;
 }
+
+@media screen and (max-width: 1024px) {
+  .home {
+    padding: 100px 120px;
+  }
+  .header {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .home {
+    padding: 100px 20px;
+  }
+}
 </style>

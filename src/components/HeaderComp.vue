@@ -13,7 +13,7 @@
           class="user-photo"
           width="40px"
           height="40px"
-          :src="require('../assets/fatih-ozoglu-logo.jpg')"
+          :src="require('../assets/profile-photo.jpg')"
           alt="profile photo"
         />
       </a>
@@ -76,5 +76,37 @@ export default {
 }
 .user-photo {
   border-radius: 50%;
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    height: 80px;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 0;
+  }
+  .logo-container {
+    width: 80px;
+    height: 100%;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  .logo {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    background-color: white;
+    border-radius: 50%;
+  }
+  .user-info {
+    width: 90px;
+    height: 100%;
+    border-left: 1px solid rgb(73, 79, 110);
+    border-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 </style>
