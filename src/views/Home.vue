@@ -3,7 +3,7 @@
     <InvoicesHeader class="header" />
     <div class="invoices-container">
       <InvoiceShort
-        v-for="(item, index) in invoices"
+        v-for="(item, index) in filteredInvoices"
         :key="index"
         :invoiceItem="item"
       />
@@ -24,7 +24,16 @@ export default {
     InvoiceShort,
   },
   computed: {
-    ...mapState(["invoices"]),
+    ...mapState(["invoices", "filter"]),
+    filteredInvoices() {
+      if (this.filter.length === 0) return this.invoices;
+      else {
+        let filtered = this.invoices.filter((item) =>
+          this.filter.includes(item.status)
+        );
+        return filtered;
+      }
+    },
   },
 };
 </script>

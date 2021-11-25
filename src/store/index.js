@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     menuIsOpen: false,
     invoices: [],
+    filter: [],
   },
   mutations: {
     SET_MENU_IS_OPEN(state) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     SET_INVOICES(state, payload) {
       state.invoices.push(payload);
+    },
+    SET_FILTER(state, payload) {
+      state.filter = payload;
     },
   },
   actions: {

@@ -1,9 +1,11 @@
 <template>
   <div class="invoice-short">
-    <p class="invoice-id">#RT3080</p>
+    <p class="invoice-id">{{ invoiceItem.id }}</p>
     <p class="invoice-due">{{ invoiceItem.invoiceDue }}</p>
     <p class="client-name">{{ invoiceItem.clientName }}</p>
-    <p class="total-price">{{ invoiceItem.total }}</p>
+    <p class="total-price">
+      &#8378; {{ invoiceItem.totalPrice.toLocaleString("en-US") }}
+    </p>
     <div
       class="invoice-status"
       :class="[
@@ -72,6 +74,18 @@ export default {
   transition: border 350ms ease-in-out;
   cursor: pointer;
   margin-bottom: 20px;
+}
+.invoice-short > * {
+  flex-basis: 20%;
+}
+.invoice-short > svg {
+  flex-basis: 10%;
+}
+.invoice-short > .client-name {
+  flex-basis: 25%;
+}
+.invoice-short > .total-price {
+  flex-basis: 30%;
 }
 .invoice-short:hover {
   border: 1px solid #7b5cfa;

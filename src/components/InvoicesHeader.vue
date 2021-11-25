@@ -2,7 +2,7 @@
   <div class="invoices-header">
     <div class="title">
       <h1 class="title-name">Invoices</h1>
-      <p class="title-total">There are 7 total invoices</p>
+      <p class="title-total">There are {{ invoices.length }} total invoices</p>
     </div>
     <div class="filter" ref="filter">
       <div @click="filterIsOpen = !filterIsOpen" class="filter-btn">
@@ -13,7 +13,7 @@
           <input
             type="checkbox"
             name="draft"
-            value="draft"
+            value="Draft"
             v-model="selectedFilter"
           />
           <label for="draft">Draft</label>
@@ -22,7 +22,7 @@
           <input
             type="checkbox"
             name="pending"
-            value="pending"
+            value="Pending"
             v-model="selectedFilter"
           />
           <label for="pending">Pending</label>
@@ -31,7 +31,7 @@
           <input
             type="checkbox"
             name="paid"
-            value="paid"
+            value="Paid"
             v-model="selectedFilter"
           />
           <label for="paid">Paid</label>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "InvoicesHeader",
   data() {
@@ -54,15 +54,23 @@ export default {
       selectedFilter: [],
     };
   },
+  computed: {
+    ...mapState(["invoices"]),
+  },
   props: {},
   methods: {
-    ...mapMutations(["SET_MENU_IS_OPEN"]),
+    ...mapMutations(["SET_MENU_IS_OPEN", "SET_FILTER"]),
     closeFilterMenu(e) {
       if (this.filterIsOpen === true) {
         if (!this.$refs.filter.contains(e.target)) {
           this.filterIsOpen = false;
         }
       }
+    },
+  },
+  watch: {
+    selectedFilter() {
+      this.SET_FILTER(this.selectedFilter);
     },
   },
   created() {
