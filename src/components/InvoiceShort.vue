@@ -1,5 +1,5 @@
 <template>
-  <div class="invoice-item">
+  <div class="invoice-item" @click="showDetail">
     <p class="id">{{ invoiceItem.id }}</p>
     <p class="due">Due: {{ invoiceItem.invoiceDue }}</p>
     <p class="name">{{ invoiceItem.clientName }}</p>
@@ -56,6 +56,14 @@ export default {
   name: "InvoiceShort",
   props: {
     invoiceItem: Object,
+  },
+  methods: {
+    showDetail() {
+      this.$router.push({
+        name: "InvoiceDetail",
+        params: { id: this.invoiceItem.id },
+      });
+    },
   },
 };
 </script>

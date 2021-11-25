@@ -312,7 +312,7 @@ export default {
       this.invoiceForm.totalPrice = totalPrice;
     },
     setId() {
-      let randomId = `#${String.fromCharCode(
+      let randomId = `${String.fromCharCode(
         Math.floor(Math.random() * (90 - 65 + 1) + 65)
       )}${String.fromCharCode(
         Math.floor(Math.random() * (90 - 65 + 1) + 65)
