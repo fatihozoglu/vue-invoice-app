@@ -1,13 +1,13 @@
 <template>
-  <div class="invoice-short">
-    <p class="invoice-id">{{ invoiceItem.id }}</p>
-    <p class="invoice-due">{{ invoiceItem.invoiceDue }}</p>
-    <p class="client-name">{{ invoiceItem.clientName }}</p>
-    <p class="total-price">
-      &#8378; {{ invoiceItem.totalPrice.toLocaleString("en-US") }}
+  <div class="invoice-item">
+    <p class="id">{{ invoiceItem.id }}</p>
+    <p class="due">Due: {{ invoiceItem.invoiceDue }}</p>
+    <p class="name">{{ invoiceItem.clientName }}</p>
+    <p class="price">
+      Price: &#8378; {{ invoiceItem.totalPrice.toLocaleString("en-US") }}
     </p>
     <div
-      class="invoice-status"
+      class="status"
       :class="[
         invoiceItem.status === 'Draft'
           ? 'draft-background'
@@ -17,7 +17,7 @@
       ]"
     >
       <div
-        class="invoice-status-circle"
+        class="status-circle"
         :class="[
           invoiceItem.status === 'Draft'
             ? 'circle-draft'
@@ -27,7 +27,7 @@
         ]"
       ></div>
       <div
-        class="invoice-status-text"
+        class="status-text"
         :class="[
           invoiceItem.status === 'Draft'
             ? 'draft-color'
@@ -62,7 +62,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.invoice-short {
+.invoice-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,33 +75,30 @@ export default {
   cursor: pointer;
   margin-bottom: 20px;
 }
-.invoice-short > * {
-  flex-basis: 20%;
-}
-.invoice-short > svg {
-  flex-basis: 10%;
-}
-.invoice-short > .client-name {
-  flex-basis: 25%;
-}
-.invoice-short > .total-price {
-  flex-basis: 30%;
-}
-.invoice-short:hover {
+.invoice-item:hover {
   border: 1px solid #7b5cfa;
 }
-.invoice-id {
+.id {
+  flex-basis: 10%;
   font-weight: 700;
 }
-.invoice-due,
-.client-name {
+.due {
+  flex-basis: 20%;
   font-size: 12px;
+  text-align: center;
 }
-.total-price {
+.name {
+  flex-basis: 20%;
+  font-size: 12px;
+  text-align: center;
+}
+.price {
   font-size: 16px;
   font-weight: 700;
+  flex-basis: 25%;
 }
-.invoice-status {
+.status {
+  flex-basis: 15%;
   width: 105px;
   height: 40px;
   display: flex;
@@ -110,14 +107,17 @@ export default {
   border-radius: 6px;
   font-weight: 700;
 }
-.invoice-status-circle {
+.status-circle {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: white;
 }
-.invoice-status-text {
+.status-text {
   font-size: 12px;
+}
+svg {
+  flex-basis: 10%;
 }
 .draft-background {
   background-color: #292c45;

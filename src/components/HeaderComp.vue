@@ -1,14 +1,11 @@
 <template>
   <div class="header">
     <div class="logo-container">
-      <a
-        href="https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl"
-        target="_blank"
-      >
+      <router-link :to="{ name: 'Home' }">
         <div class="logo">
           <div class="logo-rect"></div>
         </div>
-      </a>
+      </router-link>
     </div>
     <div class="user-info">
       <a href="https://github.com/fatihozoglu" target="_blank">
