@@ -235,6 +235,7 @@ export default {
   data() {
     return {
       invoiceForm: {
+        id: null,
         adress: null,
         city: null,
         postCode: null,
@@ -248,6 +249,7 @@ export default {
         invoiceDue: null,
         paymentTerm: "seven",
         projects: [],
+        totalPrice: null,
         status: "pending",
       },
       projectItem: {
@@ -279,7 +281,9 @@ export default {
       this.invoiceForm.projects.splice(i, 1);
     },
     save(status) {
+      this.setId();
       this.calculateInvoiceDue();
+      this.calculateTotalPrice();
       let newInvoice = {
         ...this.invoiceForm,
         status: status === "Draft" ? "Draft" : "Pending",
@@ -300,6 +304,20 @@ export default {
       this.invoiceForm.invoiceDue = new Date(
         invoiceDate + paymentTerm
       ).toDateString();
+    },
+    calculateTotalPrice() {
+      let totalPrice = this.invoiceForm.projects.reduce((acc, curr) => {
+        return acc + curr.total;
+      }, 0);
+      this.invoiceForm.totalPrice = totalPrice;
+    },
+    setId() {
+      let randomId = `#${String.fromCharCode(
+        Math.floor(Math.random() * (90 - 65 + 1) + 65)
+      )}${String.fromCharCode(
+        Math.floor(Math.random() * (90 - 65 + 1) + 65)
+      )}${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)}`;
+      this.invoiceForm.id = randomId;
     },
   },
   watch: {
