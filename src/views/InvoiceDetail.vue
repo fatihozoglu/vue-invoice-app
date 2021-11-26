@@ -18,26 +18,99 @@
       <p
         class="status-body"
         :class="[
-          'Paid' === 'Draft'
+          invoice.status === 'Draft'
             ? 'draft'
-            : 'Paid' === 'Pending'
+            : invoice.status === 'Pending'
             ? 'pending'
             : 'paid',
         ]"
       >
-        <span class="status-circle">.</span> Draft
+        <span class="status-circle">.</span> {{ invoice.status }}
       </p>
-      <button class="btn btn-edit">Edit</button>
-      <button class="btn btn-delete">Delete</button>
-      <button class="btn btn-mark">Mark as Paid</button>
+      <div class="btn-container">
+        <button
+          class="btn btn-edit"
+          v-if="invoice.status === 'Draft' || invoice.status === 'Pending'"
+        >
+          Edit
+        </button>
+        <button class="btn btn-delete">Delete</button>
+        <button class="btn btn-mark" v-if="invoice.status === 'Pending'">
+          Mark as Paid
+        </button>
+      </div>
     </div>
-    <div></div>
+    <div class="details">
+      <div class="project-info">
+        <p class="project-id">#{{ invoice.id }}</p>
+        <p class="project-desc">{{ invoice.projectDesc }}</p>
+      </div>
+      <div class="adress">
+        <p class="adress-street">{{ invoice.adress }}</p>
+        <p class="adress-city">{{ invoice.city }}</p>
+        <p class="adress-postcode">{{ invoice.postCode }}</p>
+        <p class="adress-country">{{ invoice.country }}</p>
+      </div>
+      <div class="date">
+        <p class="date-label">Invoice Date</p>
+        <p class="date-body">{{ invoice.invoiceDate }}</p>
+      </div>
+      <div class="name">
+        <p class="name-label">Bill to:</p>
+        <p class="name-body">{{ invoice.clientName }}</p>
+      </div>
+      <div class="mail">
+        <p class="mail-label">Sent to:</p>
+        <p class="mail-body">{{ invoice.clientEmail }}</p>
+      </div>
+      <div class="due">
+        <p class="due-label">Invoice Due</p>
+        <p class="due-body">{{ invoice.invoiceDue }}</p>
+      </div>
+      <div class="client-adress">
+        <p class="client-street">{{ invoice.clientAdress }}</p>
+        <p class="client-city">{{ invoice.clientCity }}</p>
+        <p class="client-postcode">{{ invoice.clientPostCode }}</p>
+        <p class="client-country">{{ invoice.clientCountry }}</p>
+      </div>
+      <div class="item-container">
+        <p>Item Name</p>
+        <p>QTY.</p>
+        <p>Price</p>
+        <p>Total</p>
+        <div
+          class="project-item"
+          v-for="(item, index) in invoice.projects"
+          :key="index"
+        >
+          <p>{{ item.name }}</p>
+          <p>{{ item.quantity }}</p>
+          <p>{{ item.price }}</p>
+          <p>{{ item.total }}</p>
+        </div>
+      </div>
+      <div class="amount">
+        <p class="amount-text">Total Amount</p>
+        <p class="amount-number">{{ invoice.totalPrice }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "InvoiceDetail",
+  props: {
+    id: String,
+    index: Number,
+  },
+  computed: {
+    ...mapGetters(["filteredInvoices"]),
+    invoice() {
+      return this.filteredInvoices[this.index];
+    },
+  },
 };
 </script>
 
@@ -104,6 +177,9 @@ export default {
   left: 20px;
   top: -13px;
 }
+.btn-container {
+  margin-left: autos;
+}
 .btn {
   padding: 16px 24px;
   border: none;
@@ -132,6 +208,99 @@ export default {
 }
 .btn-mark:hover {
   background-color: #9175ff;
+}
+.details {
+  padding: 20px 30px;
+  display: grid;
+  background-color: #1e2238;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  border-radius: 8px;
+}
+.project-info {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.adress {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+.date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+.mail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+.due {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.client-adress {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+.item-container {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  padding: 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: #252946;
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  row-gap: 20px;
+}
+.project-item {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+}
+.amount {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  padding: 20px 70px 20px 20px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: #0d0e17;
+  margin-top: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 1024px) {

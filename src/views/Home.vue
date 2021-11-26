@@ -4,8 +4,9 @@
     <div class="invoices-container">
       <InvoiceShort
         v-for="(item, index) in filteredInvoices"
-        :key="index"
+        :key="item.id"
         :invoiceItem="item"
+        :index="index"
       />
     </div>
   </main>
