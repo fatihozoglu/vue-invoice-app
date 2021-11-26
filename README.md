@@ -1,11 +1,18 @@
 # Vue Invoice App
 
-This is the solution for [Frontend Mentor Invoice App](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl). It is not finished yet, I will add individual pages for each invoice and editing/deleting functionality for each invoice. I am planning to make this app a Full Stack Web Application by adding a NodeJS/Expressjs server and Mongodb or Postgresql Database.
-It is built with:
+This is the solution for [Frontend Mentor Invoice App](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl). You can keep track of your personal invoices with this app. You can create a new invoice, save it as a draft or as pending, mark pending invoices as paid and edit any draft or pending invoices. Also you can filter the invoices by their draft/pending/paid status.
+
+I am planning to build this as a Full Stack Web Application by adding a NodeJS/Expressjs server and Mongodb/Postgresql Database.
+This project is built with:
 
 - [Vuejs](https://vuejs.org/) by using [Vue CLI](https://cli.vuejs.org/),
 - For state management: [Vuex](https://vuex.vuejs.org/),
 - For routing: [Vue Router](https://router.vuejs.org/).
+
+In progress:
+
+- Form Validations
+- Edit Invoice Functionality
 
 ## Table of contents
 
@@ -29,7 +36,6 @@ Users should be able to:
 - Receive form validations when trying to create/edit an invoice
 - Save draft invoices, and mark pending invoices as paid
 - Filter invoices by status (draft/pending/paid)
-- Toggle light and dark mode
 - Bonus: I will add Nodejs/Expressjs backend when i finish this project to make it a Full Stack Web App.
 
 ### Links
