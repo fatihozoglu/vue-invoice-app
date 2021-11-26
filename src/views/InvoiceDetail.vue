@@ -31,11 +31,16 @@
         <button
           class="btn btn-edit"
           v-if="invoice.status === 'Draft' || invoice.status === 'Pending'"
+          @click="editInvoice"
         >
           Edit
         </button>
-        <button class="btn btn-delete">Delete</button>
-        <button class="btn btn-mark" v-if="invoice.status === 'Pending'">
+        <button class="btn btn-delete" @click="deleteItem">Delete</button>
+        <button
+          class="btn btn-mark"
+          v-if="invoice.status === 'Pending'"
+          @click="markAsPaid"
+        >
           Mark as Paid
         </button>
       </div>
@@ -83,22 +88,28 @@
           v-for="(item, index) in invoice.projects"
           :key="index"
         >
-          <p>{{ item.name }}</p>
-          <p>{{ item.quantity }}</p>
-          <p>{{ item.price }}</p>
-          <p>{{ item.total }}</p>
+          <p class="prj-text">{{ item.name }}</p>
+          <p class="prj-text">{{ item.quantity }}</p>
+          <p class="prj-text">
+            &#8378; {{ item.price.toLocaleString("en-US") }}
+          </p>
+          <p class="prj-text">
+            &#8378; {{ item.total.toLocaleString("en-US") }}
+          </p>
         </div>
       </div>
       <div class="amount">
         <p class="amount-text">Total Amount</p>
-        <p class="amount-number">{{ invoice.totalPrice }}</p>
+        <p class="amount-number">
+          &#8378; {{ invoice.totalPrice.toLocaleString("en-US") }}
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations, mapState } from "vuex";
 export default {
   name: "InvoiceDetail",
   props: {
@@ -106,9 +117,31 @@ export default {
     index: Number,
   },
   computed: {
+    ...mapState(["invoices"]),
     ...mapGetters(["filteredInvoices"]),
+
     invoice() {
       return this.filteredInvoices[this.index];
+    },
+  },
+  methods: {
+    ...mapMutations(["DELETE_INVOICE", "MARK_INVOICE", "SET_MENU_IS_OPEN"]),
+
+    deleteItem() {
+      let index = this.invoices.findIndex(
+        (item) => item.id === this.invoice.id
+      );
+      this.DELETE_INVOICE(index);
+      this.$router.push({ name: "Home" });
+    },
+    markAsPaid() {
+      let index = this.invoices.findIndex(
+        (item) => item.id === this.invoice.id
+      );
+      this.MARK_INVOICE(index);
+    },
+    editInvoice() {
+      this.SET_MENU_IS_OPEN();
     },
   },
 };
@@ -149,7 +182,7 @@ export default {
 .status-body {
   width: 105px;
   padding: 13px 0;
-  padding-left: 45px;
+  padding-left: 40px;
   border-radius: 6px;
   font-weight: 700;
   display: flex;
@@ -174,11 +207,11 @@ export default {
 .status-circle {
   font-size: 40px;
   position: absolute;
-  left: 20px;
-  top: -13px;
+  left: 15px;
+  top: -14px;
 }
 .btn-container {
-  margin-left: autos;
+  margin-left: auto;
 }
 .btn {
   padding: 16px 24px;
@@ -225,6 +258,18 @@ export default {
   align-items: flex-start;
   gap: 10px;
 }
+.project-id {
+  font-size: 16px;
+  font-weight: 700;
+}
+.date-body,
+.due-body,
+.name-body,
+.mail-body {
+  font-size: 15px;
+  font-weight: 700;
+}
+
 .adress {
   display: flex;
   flex-direction: column;
@@ -239,6 +284,7 @@ export default {
   align-items: flex-start;
   grid-column-start: 1;
   grid-column-end: 2;
+  gap: 10px;
 }
 .name {
   display: flex;
@@ -246,6 +292,7 @@ export default {
   align-items: flex-start;
   grid-column-start: 2;
   grid-column-end: 3;
+  gap: 10px;
 }
 .mail {
   display: flex;
@@ -253,6 +300,7 @@ export default {
   align-items: flex-start;
   grid-column-start: 3;
   grid-column-end: 4;
+  gap: 10px;
 }
 .due {
   display: flex;
@@ -261,6 +309,7 @@ export default {
   justify-content: flex-end;
   grid-column-start: 1;
   grid-column-end: 2;
+  gap: 10px;
 }
 .client-adress {
   display: flex;
@@ -288,6 +337,9 @@ export default {
   display: grid;
   grid-template-columns: 2fr repeat(3, 1fr);
 }
+.prj-text {
+  font-weight: 700;
+}
 .amount {
   grid-column-start: 1;
   grid-column-end: 4;
@@ -301,6 +353,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.amount-number {
+  font-size: 20px;
+  font-weight: 700;
 }
 
 @media screen and (max-width: 1024px) {

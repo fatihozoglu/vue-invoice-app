@@ -1,12 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import dummyData from "./dummyData";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     menuIsOpen: false,
-    invoices: [],
+    invoices: [...dummyData],
     filter: [],
   },
   mutations: {
@@ -18,6 +19,12 @@ export default new Vuex.Store({
     },
     SET_FILTER(state, payload) {
       state.filter = payload;
+    },
+    DELETE_INVOICE(state, payload) {
+      state.invoices.splice(payload, 1);
+    },
+    MARK_INVOICE(state, payload) {
+      state.invoices[payload].status = "Paid";
     },
   },
   actions: {
