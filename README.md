@@ -2,6 +2,8 @@
 
 This is the solution for [Frontend Mentor Invoice App](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl). You can keep track of your personal invoices with this app. You can create a new invoice, save it as a draft or as pending, mark pending invoices as paid and edit any draft or pending invoices. Also you can filter the invoices by their draft/pending/paid status.
 
+You can see the [live demo here.](https://fozoglu-vue-invoice-app.surge.sh/)
+
 I am planning to build this as a Full Stack Web Application by adding a NodeJS/Expressjs server and Mongodb/Postgresql Database.
 This project is built with:
 
@@ -41,6 +43,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Github Link](https://github.com/fatihozoglu/vue-invoice-app)
+- Live Site URL: [Vue Invoice App](https://fozoglu-vue-invoice-app.surge.sh/)
 
 ## My process
 
