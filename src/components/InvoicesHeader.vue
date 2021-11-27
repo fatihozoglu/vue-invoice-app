@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapState } from "vuex";
 export default {
   name: "InvoicesHeader",
   data() {
@@ -57,6 +57,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(["filter"]),
     ...mapGetters(["filteredInvoices"]),
   },
   props: {},
@@ -77,6 +78,7 @@ export default {
   },
   created() {
     window.addEventListener("click", this.closeFilterMenu);
+    this.selectedFilter = [...this.filter];
   },
   beforeDestroy() {
     window.removeEventListener("click", this.closeFilterMenu);

@@ -36,7 +36,6 @@ export default {
   background-color: #1e2139;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

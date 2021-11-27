@@ -1,12 +1,8 @@
 <template>
   <div class="app" :class="{ dark: menuIsOpen }">
-    <div>
-      <HeaderComp />
-      <FormComp />
-    </div>
-    <div class="router-view">
-      <router-view />
-    </div>
+    <HeaderComp />
+    <FormComp />
+    <router-view />
   </div>
 </template>
 
@@ -28,7 +24,9 @@ export default {
 </script>
 
 <style>
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -41,13 +39,10 @@ body {
 }
 .app {
   background-color: #141624;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   transition: background-color 0.5s;
-}
-.router-view {
-  width: 100%;
 }
 .dark {
   background-color: #0a0b12;

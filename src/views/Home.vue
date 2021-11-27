@@ -33,9 +33,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .home {
-  padding: 50px 215px;
+  padding: 50px 150px 50px 220px;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 .invoices-container {
   height: 90%;

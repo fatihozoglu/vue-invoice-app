@@ -205,7 +205,7 @@
             <div class="input-item" id="project-total">
               <label for="total"> Total </label>
               <div id="total">
-                <span class="price-symbol">&#8378;</span>{{ projectItem.total }}
+                <span class="price-symbol">&#8378;</span>{{ projectItemTotal }}
               </div>
             </div>
           </div>
@@ -264,7 +264,7 @@ export default {
   },
   computed: {
     ...mapState(["menuIsOpen"]),
-    totalPrice() {
+    projectItemTotal() {
       return this.projectItem.quantity * this.projectItem.price;
     },
   },
@@ -274,6 +274,8 @@ export default {
       this.$refs.nextInput.focus();
     },
     addNewProject() {
+      this.projectItem.total =
+        this.projectItem.quantity * this.projectItem.price;
       let newProject = { ...this.projectItem };
       this.invoiceForm.projects.push(newProject);
       this.projectItem = { name: "", quantity: 1, price: null, total: null };
@@ -320,11 +322,6 @@ export default {
         Math.floor(Math.random() * (90 - 65 + 1) + 65)
       )}${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)}`;
       this.invoiceForm.id = randomId;
-    },
-  },
-  watch: {
-    totalPrice(newValue) {
-      this.projectItem.total = newValue;
     },
   },
 };

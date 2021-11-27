@@ -1,5 +1,5 @@
 <template>
-  <div class="detail">
+  <main class="detail">
     <router-link :to="{ name: 'Home' }" class="link">
       <svg
         class="back-icon"
@@ -105,7 +105,7 @@
         </p>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -149,12 +149,13 @@ export default {
 
 <style scoped>
 .detail {
-  color: white;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 750px;
-  margin: 60px auto;
+  padding: 50px 150px 50px 220px;
+  color: white;
 }
 .link {
   text-decoration: none;
@@ -178,16 +179,22 @@ export default {
 .status-title {
   font-weight: 600;
   color: hsl(231, 75%, 93%);
+  flex-basis: 60px;
 }
 .status-body {
   width: 105px;
-  padding: 13px 0;
-  padding-left: 40px;
+  padding: 13px 0 13px 40px;
   border-radius: 6px;
   font-weight: 700;
   display: flex;
   align-items: center;
   position: relative;
+}
+.status-circle {
+  font-size: 40px;
+  position: absolute;
+  left: 15px;
+  top: -14px;
 }
 .draft {
   background-color: #292c45;
@@ -200,15 +207,6 @@ export default {
 .paid {
   background-color: rgba(51, 215, 160, 0.06);
   color: rgb(51, 215, 160);
-}
-.status-title {
-  flex-basis: 60px;
-}
-.status-circle {
-  font-size: 40px;
-  position: absolute;
-  left: 15px;
-  top: -14px;
 }
 .btn-container {
   margin-left: auto;
@@ -269,7 +267,6 @@ export default {
   font-size: 15px;
   font-weight: 700;
 }
-
 .adress {
   display: flex;
   flex-direction: column;
@@ -361,13 +358,13 @@ export default {
 
 @media screen and (max-width: 1024px) {
   .detail {
-    margin-top: 120px;
+    padding: 100px 120px 20px 120px;
   }
 }
-@media screen and (max-width: 786px) {
+
+@media screen and (max-width: 750px) {
   .detail {
-    margin-left: 18px;
-    margin-right: 18px;
+    padding: 100px 20px 20px 20px;
   }
 }
 </style>
