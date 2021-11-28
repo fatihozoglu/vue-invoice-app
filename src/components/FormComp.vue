@@ -259,7 +259,7 @@ export default {
         clientCity: null,
         clientPostCode: null,
         clientCountry: null,
-        invoiceDate: new Date(Date.now()).toDateString(),
+        invoiceDate: new Date(Date.now()).toISOString().slice(0, 10),
         invoiceDue: null,
         paymentTerm: "seven",
         projectDesc: null,
@@ -326,9 +326,9 @@ export default {
           : this.invoiceForm.paymentTerm === "fourteen"
           ? 1209600000
           : 2592000000;
-      this.invoiceForm.invoiceDue = new Date(
-        invoiceDate + paymentTerm
-      ).toDateString();
+      this.invoiceForm.invoiceDue = new Date(invoiceDate + paymentTerm)
+        .toISOString()
+        .slice(0, 10);
     },
     calculateTotalPrice() {
       let totalPrice = this.invoiceForm.projects.reduce((acc, curr) => {
@@ -365,7 +365,7 @@ export default {
           clientCity: null,
           clientPostCode: null,
           clientCountry: null,
-          invoiceDate: new Date(Date.now()).toDateString(),
+          invoiceDate: new Date(Date.now()).toISOString().slice(0, 10),
           invoiceDue: null,
           paymentTerm: "seven",
           projectDesc: null,
