@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import InvoicesHeader from "../components/InvoicesHeader.vue";
 import InvoiceShort from "../components/InvoiceShort.vue";
 
@@ -26,6 +26,12 @@ export default {
   },
   computed: {
     ...mapGetters(["filteredInvoices"]),
+  },
+  methods: {
+    ...mapMutations(["SET_EDIT"]),
+  },
+  created() {
+    this.SET_EDIT({ status: false });
   },
 };
 </script>

@@ -125,7 +125,12 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["DELETE_INVOICE", "MARK_INVOICE", "SET_MENU_IS_OPEN"]),
+    ...mapMutations([
+      "DELETE_INVOICE",
+      "MARK_INVOICE",
+      "SET_MENU_IS_OPEN",
+      "SET_EDIT",
+    ]),
 
     deleteItem() {
       let index = this.invoices.findIndex(
@@ -141,6 +146,7 @@ export default {
       this.MARK_INVOICE(index);
     },
     editInvoice() {
+      this.SET_EDIT({ status: true, id: this.invoice.id });
       this.SET_MENU_IS_OPEN();
     },
   },

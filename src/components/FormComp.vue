@@ -217,10 +217,23 @@
       <div class="btn-container">
         <button class="btn-discard" @click="SET_MENU_IS_OPEN">Discard</button>
         <div>
-          <button class="btn-draft" @click="save('Draft')">
+          <button
+            v-show="!edit.status"
+            class="btn-draft"
+            @click="save('Draft')"
+          >
             Save as Draft
           </button>
-          <button class="btn-save" @click="save('Pending')">Save & Send</button>
+          <button
+            v-show="!edit.status"
+            class="btn-save"
+            @click="save('Pending')"
+          >
+            Save & Send
+          </button>
+          <button v-show="edit.status" class="btn-save" @click="update">
+            Save Changes
+          </button>
         </div>
       </div>
     </div>
@@ -263,13 +276,13 @@ export default {
     };
   },
   computed: {
-    ...mapState(["menuIsOpen"]),
+    ...mapState(["menuIsOpen", "invoices", "edit"]),
     projectItemTotal() {
       return this.projectItem.quantity * this.projectItem.price;
     },
   },
   methods: {
-    ...mapMutations(["SET_MENU_IS_OPEN", "SET_INVOICES"]),
+    ...mapMutations(["SET_MENU_IS_OPEN", "SET_INVOICES", "INVOICE_UPDATE"]),
     focusInput() {
       this.$refs.nextInput.focus();
     },
@@ -293,6 +306,11 @@ export default {
         status: status === "Draft" ? "Draft" : "Pending",
       };
       this.SET_INVOICES(newInvoice);
+      this.SET_MENU_IS_OPEN();
+    },
+    update() {
+      let index = this.invoices.findIndex((item) => item.id === this.edit.id);
+      this.INVOICE_UPDATE({ index: index, info: this.invoiceForm });
       this.SET_MENU_IS_OPEN();
     },
     calculateInvoiceDue() {
@@ -322,6 +340,37 @@ export default {
         Math.floor(Math.random() * (90 - 65 + 1) + 65)
       )}${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)}`;
       this.invoiceForm.id = randomId;
+    },
+  },
+  watch: {
+    edit() {
+      if (this.edit.status) {
+        let invoiceToEdit = this.invoices.find(
+          (item) => item.id === this.edit.id
+        );
+        this.invoiceForm = { ...invoiceToEdit };
+      } else {
+        this.invoiceForm = {
+          id: null,
+          adress: null,
+          city: null,
+          postCode: null,
+          country: null,
+          clientName: null,
+          clientEmail: null,
+          clientAdress: null,
+          clientCity: null,
+          clientPostCode: null,
+          clientCountry: null,
+          invoiceDate: new Date(Date.now()).toDateString(),
+          invoiceDue: null,
+          paymentTerm: "seven",
+          projectDesc: null,
+          projects: [],
+          totalPrice: null,
+          status: "pending",
+        };
+      }
     },
   },
 };
