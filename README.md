@@ -14,7 +14,6 @@ This project is built with:
 In progress:
 
 - Form Validations
-- Edit Invoice Functionality
 
 ## Table of contents
 
