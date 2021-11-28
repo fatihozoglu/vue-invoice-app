@@ -351,7 +351,7 @@ export default {
         let invoiceToEdit = this.invoices.find(
           (item) => item.id === this.edit.id
         );
-        this.invoiceForm = { ...invoiceToEdit };
+        this.invoiceForm = JSON.parse(JSON.stringify(invoiceToEdit));
       } else {
         this.invoiceForm = {
           id: null,
