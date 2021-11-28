@@ -99,7 +99,7 @@ export default {
 .name {
   flex-basis: 20%;
   font-size: 12px;
-  text-align: center;
+  text-align: left;
 }
 .price {
   font-size: 16px;

@@ -310,6 +310,9 @@ export default {
     },
     update() {
       let index = this.invoices.findIndex((item) => item.id === this.edit.id);
+      this.calculateInvoiceDue();
+      this.calculateTotalPrice();
+      this.invoiceForm.status = "Pending";
       this.INVOICE_UPDATE({ index: index, info: this.invoiceForm });
       this.SET_MENU_IS_OPEN();
     },
