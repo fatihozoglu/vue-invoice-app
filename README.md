@@ -5,15 +5,14 @@ This is the solution for [Frontend Mentor Invoice App](https://www.frontendmento
 You can see the [live demo here.](https://fozoglu-vue-invoice-app.surge.sh/)
 
 I am planning to build this as a Full Stack Web Application by adding a NodeJS/Expressjs server and Mongodb/Postgresql Database.
+
 This project is built with:
 
-- [Vuejs](https://vuejs.org/) by using [Vue CLI](https://cli.vuejs.org/),
+- Frontend Framework: [Vuejs](https://vuejs.org/)
+- Created with: [Vue CLI](https://cli.vuejs.org/),
 - For state management: [Vuex](https://vuex.vuejs.org/),
-- For routing: [Vue Router](https://router.vuejs.org/).
-
-In progress:
-
-- Form Validations
+- For routing: [Vue Router](https://router.vuejs.org/),
+- For form validations: [Vuelidate](https://vuelidate.js.org/).
 
 ## Table of contents
 
@@ -57,6 +56,7 @@ Users should be able to:
 - [Vue CLI](https://cli.vuejs.org/)
 - [Vuex](https://vuex.vuejs.org/)
 - [Vue Router](https://router.vuejs.org/)
+- [Vuelidate](https://vuelidate.js.org/)
 
 ## Author
 
