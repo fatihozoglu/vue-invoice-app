@@ -5,9 +5,21 @@
       <form class="form">
         <h3>Bill From</h3>
         <div class="input-item">
-          <label for="street"> Street Adress </label>
+          <label
+            class="form__label"
+            :class="{
+              error: $v.invoiceForm.adress.$error,
+            }"
+            for="street"
+          >
+            Street Adress
+          </label>
           <input
-            v-model="invoiceForm.adress"
+            class="form__input"
+            :class="{
+              errorborder: $v.invoiceForm.adress.$error,
+            }"
+            v-model.trim="$v.invoiceForm.adress.$model"
             type="text"
             name="street"
             id="street"
@@ -15,27 +27,63 @@
         </div>
         <div class="input-group">
           <div class="input-item">
-            <label for="city"> City </label>
+            <label
+              class="form__label"
+              :class="{
+                error: $v.invoiceForm.city.$error,
+              }"
+              for="city"
+            >
+              City
+            </label>
             <input
-              v-model="invoiceForm.city"
+              class="form__input"
+              :class="{
+                errorborder: $v.invoiceForm.city.$error,
+              }"
+              v-model.trim="$v.invoiceForm.city.$model"
               type="text"
               name="city"
               id="city"
             />
           </div>
           <div class="input-item">
-            <label for="postcode"> Post Code </label>
+            <label
+              class="form__label"
+              :class="{
+                error: $v.invoiceForm.postCode.$error,
+              }"
+              for="postcode"
+            >
+              Post Code
+            </label>
             <input
-              v-model="invoiceForm.postCode"
+              class="form__input"
+              :class="{
+                errorborder: $v.invoiceForm.postCode.$error,
+              }"
+              v-model.trim="$v.invoiceForm.postCode.$model"
               type="text"
               name="postCode"
               id="postcode"
             />
           </div>
           <div class="input-item">
-            <label for="country"> Country </label>
+            <label
+              class="form__label"
+              :class="{
+                error: $v.invoiceForm.country.$error,
+              }"
+              for="country"
+            >
+              Country
+            </label>
             <input
-              v-model="invoiceForm.country"
+              class="form__input"
+              :class="{
+                errorborder: $v.invoiceForm.country.$error,
+              }"
+              v-model.trim="$v.invoiceForm.country.$model"
               type="text"
               name="country"
               id="country"
@@ -44,9 +92,21 @@
         </div>
         <h3>Bill To</h3>
         <div class="input-item">
-          <label for="client-name"> Client's Name </label>
+          <label
+            class="form__label"
+            :class="{
+              error: $v.invoiceForm.clientName.$error,
+            }"
+            for="client-name"
+          >
+            Client's Name
+          </label>
           <input
-            v-model="invoiceForm.clientName"
+            class="form__input"
+            :class="{
+              errorborder: $v.invoiceForm.clientName.$error,
+            }"
+            v-model.trim="$v.invoiceForm.clientName.$model"
             type="text"
             name="clientName"
             id="name"
@@ -54,9 +114,21 @@
         </div>
 
         <div class="input-item">
-          <label for="client-email"> Client's Email </label>
+          <label
+            class="form__label"
+            :class="{
+              error: $v.invoiceForm.clientEmail.$error,
+            }"
+            for="client-email"
+          >
+            Client's Email
+          </label>
           <input
-            v-model="invoiceForm.clientEmail"
+            class="form__input"
+            :class="{
+              errorborder: $v.invoiceForm.clientEmail.$error,
+            }"
+            v-model.trim="$v.invoiceForm.clientEmail.$model"
             type="email"
             name="clientEmail"
             id="client-email"
@@ -64,9 +136,21 @@
         </div>
 
         <div class="input-item">
-          <label for="client-street"> Client's Adress </label>
+          <label
+            class="form__label"
+            :class="{
+              error: $v.invoiceForm.clientAdress.$error,
+            }"
+            for="client-street"
+          >
+            Client's Adress
+          </label>
           <input
-            v-model="invoiceForm.clientAdress"
+            class="form__input"
+            :class="{
+              errorborder: $v.invoiceForm.clientAdress.$error,
+            }"
+            v-model.trim="$v.invoiceForm.clientAdress.$model"
             type="text"
             name="clientStreet"
             id="client-street"
@@ -75,27 +159,63 @@
 
         <div class="input-group">
           <div class="input-item">
-            <label for="client-city"> City </label>
+            <label
+              class="form__label"
+              :class="{
+                error: $v.invoiceForm.clientCity.$error,
+              }"
+              for="client-city"
+            >
+              City
+            </label>
             <input
-              v-model="invoiceForm.clientCity"
+              class="form__input"
+              :class="{
+                errorborder: $v.invoiceForm.clientCity.$error,
+              }"
+              v-model.trim="$v.invoiceForm.clientCity.$model"
               type="text"
               name="clientCity"
               id="client-city"
             />
           </div>
           <div class="input-item">
-            <label for="client-postcode"> Post Code </label>
+            <label
+              class="form__label"
+              :class="{
+                error: $v.invoiceForm.clientPostCode.$error,
+              }"
+              for="client-postcode"
+            >
+              Post Code
+            </label>
             <input
-              v-model="invoiceForm.clientPostCode"
+              class="form__input"
+              :class="{
+                errorborder: $v.invoiceForm.clientPostCode.$error,
+              }"
+              v-model.trim="$v.invoiceForm.clientPostCode.$model"
               type="text"
               name="clientPostcode"
               id="client-postcode"
             />
           </div>
           <div class="input-item">
-            <label for="client-country"> Country </label>
+            <label
+              class="form__label"
+              :class="{
+                error: $v.invoiceForm.clientCountry.$error,
+              }"
+              for="client-country"
+            >
+              Country
+            </label>
             <input
-              v-model="invoiceForm.clientCountry"
+              class="form__input"
+              :class="{
+                errorborder: $v.invoiceForm.clientCountry.$error,
+              }"
+              v-model.trim="$v.invoiceForm.clientCountry.$model"
               type="text"
               name="clientCountry"
               id="client-country"
@@ -127,9 +247,21 @@
           </div>
         </div>
         <div class="input-item">
-          <label for="desc"> Project Description </label>
+          <label
+            class="form__label"
+            :class="{
+              error: $v.invoiceForm.projectDesc.$error,
+            }"
+            for="desc"
+          >
+            Project Description
+          </label>
           <input
-            v-model="invoiceForm.projectDesc"
+            class="form__input"
+            :class="{
+              errorborder: $v.invoiceForm.projectDesc.$error,
+            }"
+            v-model.trim="$v.invoiceForm.projectDesc.$model"
             type="text"
             name="desc"
             id="desc"
@@ -175,10 +307,20 @@
           </div>
           <div class="input-group" id="project">
             <div class="input-item" id="project-name">
-              <label for="item-name"> Item Name </label>
+              <label
+                :class="{
+                  error: $v.invoiceForm.projects.$error,
+                }"
+                for="item-name"
+              >
+                Item Name
+              </label>
               <input
-                ref="nextInput"
+                :class="{
+                  errorborder: $v.invoiceForm.projects.$error,
+                }"
                 v-model="projectItem.name"
+                ref="nextInput"
                 type="text"
                 name="itemName"
                 id="item-name"
@@ -194,8 +336,18 @@
               />
             </div>
             <div class="input-item" id="project-price">
-              <label for="price"> Price </label>
+              <label
+                :class="{
+                  error: $v.invoiceForm.projects.$error,
+                }"
+                for="price"
+              >
+                Price
+              </label>
               <input
+                :class="{
+                  errorborder: $v.invoiceForm.projects.$error,
+                }"
                 v-model="projectItem.price"
                 type="number"
                 name="price"
@@ -217,18 +369,10 @@
       <div class="btn-container">
         <button class="btn-discard" @click="SET_MENU_IS_OPEN">Discard</button>
         <div>
-          <button
-            v-show="!edit.status"
-            class="btn-draft"
-            @click="save('Draft')"
-          >
+          <button v-show="!edit.status" class="btn-draft" @click="saveAsDraft">
             Save as Draft
           </button>
-          <button
-            v-show="!edit.status"
-            class="btn-save"
-            @click="save('Pending')"
-          >
+          <button v-show="!edit.status" class="btn-save" @click="save">
             Save & Send
           </button>
           <button v-show="edit.status" class="btn-save" @click="update">
@@ -242,6 +386,7 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
+import { FormValidation } from "../mixins/FormValidation";
 
 export default {
   name: "FormComp",
@@ -275,6 +420,7 @@ export default {
       },
     };
   },
+  mixins: [FormValidation],
   computed: {
     ...mapState(["menuIsOpen", "invoices", "edit"]),
     projectItemTotal() {
@@ -297,24 +443,41 @@ export default {
     deleteProject(i) {
       this.invoiceForm.projects.splice(i, 1);
     },
-    save(status) {
+    saveAsDraft() {
       this.setId();
       this.calculateInvoiceDue();
       this.calculateTotalPrice();
       let newInvoice = {
         ...this.invoiceForm,
-        status: status === "Draft" ? "Draft" : "Pending",
+        status: "Draft",
       };
       this.SET_INVOICES(newInvoice);
       this.SET_MENU_IS_OPEN();
     },
+    save() {
+      let validation = this.checkFormValidation();
+      if (validation) {
+        this.setId();
+        this.calculateInvoiceDue();
+        this.calculateTotalPrice();
+        let newInvoice = {
+          ...this.invoiceForm,
+          status: "Pending",
+        };
+        this.SET_INVOICES(newInvoice);
+        this.SET_MENU_IS_OPEN();
+      }
+    },
     update() {
-      let index = this.invoices.findIndex((item) => item.id === this.edit.id);
-      this.calculateInvoiceDue();
-      this.calculateTotalPrice();
-      this.invoiceForm.status = "Pending";
-      this.INVOICE_UPDATE({ index: index, info: this.invoiceForm });
-      this.SET_MENU_IS_OPEN();
+      let validation = this.checkFormValidation();
+      if (validation) {
+        let index = this.invoices.findIndex((item) => item.id === this.edit.id);
+        this.calculateInvoiceDue();
+        this.calculateTotalPrice();
+        this.invoiceForm.status = "Pending";
+        this.INVOICE_UPDATE({ index: index, info: this.invoiceForm });
+        this.SET_MENU_IS_OPEN();
+      }
     },
     calculateInvoiceDue() {
       let invoiceDate = Date.parse(this.invoiceForm.invoiceDate);
@@ -343,6 +506,14 @@ export default {
         Math.floor(Math.random() * (90 - 65 + 1) + 65)
       )}${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)}`;
       this.invoiceForm.id = randomId;
+    },
+    checkFormValidation() {
+      if (this.$v.$dirty && !this.$v.$invalid) {
+        return true;
+      } else {
+        this.$v.$touch();
+        return false;
+      }
     },
   },
   watch: {
@@ -587,6 +758,12 @@ input[type="number"] {
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
+}
+.error {
+  color: red;
+}
+.errorborder {
+  border: 1px solid red;
 }
 
 @media screen and (max-width: 1024px) {
